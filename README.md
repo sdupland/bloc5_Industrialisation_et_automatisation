@@ -22,5 +22,11 @@ This project is divided into three parts :
 The two first points will be proposed through a dashboard.
 The optimum price will be delivered through an API.
 
+you will find in this projetct different folders :
+- getaround_dashboard with .... the dashboard ans all the files needed (included dataset used)
+- getaround_ml_local with the notebook used to get thet raw data, transform it, create, train models and choose one
+- getaround_ml_api with a script using fast_api in order to deliver the predicted rental price of a car
+- getaround_mlflow with a script using heroku and mlflow
+
 
 
