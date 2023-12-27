@@ -11,4 +11,4 @@ RUN curl -fsSL https://get.deta.dev/cli.sh | sh
 COPY . /home/app
 RUN pip install -r requirements.txt
 
-CMD streamlit run --server.port $PORT app.py
+CMD streamlit run --server.port $PORT app_Main.py
