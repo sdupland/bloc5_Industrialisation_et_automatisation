@@ -33,12 +33,6 @@ with st.expander('About this app'):
   st.write('This app was made with streamlit.')
   st.image('https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png', width=250)
 
-# Conclusion
-st.markdown("---")
-st.subheader('Conclusions')
-st.markdown("""
-    work in progress
-""")
 
 # Footer
 empty_space, footer = st.columns([1, 2])
