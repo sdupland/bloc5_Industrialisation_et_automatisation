@@ -27,11 +27,8 @@ st.sidebar.markdown("""
     * [Preview of data set](#dataset-preview)
     * [Graph 1](##plot-1) - Mean rental price per day
     * [Graph 2](#plot-2) - Evolution of mean price according to the options
-    * [Graph 3](#plot-3) - Distribution xxxxxxxxxxxxxxxxxxxxxx
-    * [Graph 4](#plot-4) - A different xxxxxxxxxxxxxxxxx
-    * [Graph 5](#plot-5) - Type of models rented according to the kind of fuel
-    * [Graph 6](#plot-6) - Overview of options available on cars   
-    * [Conclusions](#conclusions)
+    * [Graph 3](#plot-3) - Type of models rented according to the kind of fuel
+    * [Graph 4](#plot-4) - Overview of options available on cars   
 """)
 
 st.markdown("---")
@@ -84,51 +81,28 @@ with col2:
         Certain options allow you to increase the price of renting a car for the day.
         """)
 
-col1, col2 = st.columns(2)
-
-with col1:    
-    # Graph 3
-    st.markdown("---")
-    st.subheader('plot 3')
-    st.markdown("### xxxxxxxxxxxxxxxxxxxxxxx")
-    # st.plotly_chart(, use_container_width=True)
-    st.markdown("""
-        comment
-    """)
-
-with col2:
-    # Graph 4
-    st.markdown("---")
-    st.subheader('plot 4')
-    st.markdown("### xxxxxxxxxxxxxxxxxxxxxxx")
-    # st.plotly_chart(fig4, use_container_width=True)
-    st.markdown("""
-        ddddddddddddddddddddddddddddddddddddddddddd
-        dddddddddddddddddddddddddddddddddddddddddd
-    """)
-
-# Graph 5
+# Graph 3
 st.markdown("---")
-st.subheader('plot 5')
+st.subheader('plot 3')
 st.markdown("### Type of models rented according to the kind of fuel")
-fig5 = px.histogram(dataset_price,
+fig3 = px.histogram(dataset_price,
                    x= "model_key_clean",
                    color="fuel",
                    width=1000,
                    labels={"model_key_clean" : "model"}
                    )
-st.plotly_chart(fig5, use_container_width=True)
+st.plotly_chart(fig3, use_container_width=True)
 st.markdown("""
     Certain car brands are more represented. In parralel, we can see that diesel is still the main kind of fuel.
 """)
 
-# Graph 6
+# Graph 4
 st.markdown("---")
-st.subheader('plot 6')
+st.subheader('plot 4')
 st.markdown("### Overview of options available on cars")
 L= len(dataset_price)
 feature_name = ['GPS','Air conditioning','Private parking available',"Automatic car","Getaround connect","Speed regulator","Winter tires"]
-fig6 = go.Figure(data=[go.Bar(x=feature_name, 
+fig4 = go.Figure(data=[go.Bar(x=feature_name, 
                               y =[dataset_price['has_gps'].sum()/L,
                                   dataset_price['has_air_conditioning'].sum()/L, 
                                   dataset_price['private_parking_available'].sum()/L,
@@ -146,19 +120,12 @@ fig6 = go.Figure(data=[go.Bar(x=feature_name,
                                   1-dataset_price['has_speed_regulator'].sum()/L,
                                   1-dataset_price['winter_tires'].sum()/L],
                                   name='False')])
-fig6.update_layout(barmode='stack', bargap=0.07, height=400)
-st.plotly_chart(fig6, use_container_width=True)
+fig4.update_layout(barmode='stack', bargap=0.07, height=400)
+st.plotly_chart(fig4, use_container_width=True)
 st.markdown("""
     Some options are very usual in cars as GPS and winter tires.
     Private parking and getarount connect can be found once in two.
     Finally, air conditionning, automatic car and speed regulator are mess common.
-""")
-
-# Conclusion
-st.markdown("---")
-st.subheader('Conclusions')
-st.markdown("""
-    work in progress
 """)
 
 # Footer
@@ -169,5 +136,5 @@ with empty_space:
 
 with footer:
     st.markdown("""
-        [my Github](www.github.com/xxxxxxxxxx)
+        [my Github](www.github.com/sdupland)
     """)

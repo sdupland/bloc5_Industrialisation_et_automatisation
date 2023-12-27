@@ -37,7 +37,6 @@ st.sidebar.markdown("""
     * [Plot 3](#plot-3) - Distribution of time delta when negative
     * [Plot 4](#plot-4) - How long was late the last driver if there is a lack of time between two rentals
     * [Plot 5](#plot-5) - Impact of a time threshold of your choice
-    * [Conclusions](#conclusions)  
 """)
 
 st.markdown("---")
@@ -140,13 +139,6 @@ mean_price_minutes = 0.084
 cost_time_thresold = dataset_threshold.loc[mask_delay&mask_rented_before, "time_delta_with_previous_rental_in_minutes"].apply(lambda x : (x-threshold_time)*mean_price_minutes if x<threshold_time else 0).sum()
 st.markdown("#### With a time treshold of {} minutes, the loss of turnover will be potentially of around {} euros".format(threshold_time, int(cost_time_thresold)))
 
-# Conclusion
-st.markdown("---")
-st.subheader('Conclusions')
-st.markdown("""
-    work in progress
-""")
-
 # Footer
 empty_space, footer = st.columns([1, 2])
 
@@ -155,5 +147,5 @@ with empty_space:
 
 with footer:
     st.markdown("""
-        [my Github](www.github.com/xxxxxxxxxx)
+        [my Github](www.github.com/sdupland)
     """)

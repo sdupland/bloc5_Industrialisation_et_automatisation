@@ -31,8 +31,7 @@ st.sidebar.markdown("""
     * [Graph 4](#plot-4) - Are the cars rented before
     * [Graph 5](#plot-5) - Check in status according to the situation of the car previously (rented or not)
     * [Graph 6](#plot-6) - Check in status according to the checkin type
-    * [Graph 7](#plot-7) - Distribution of delay according to different slices   
-    * [Conclusions](#conclusions)
+    * [Graph 7](#plot-7) - Distribution of delay according to different slices
 """)
 
 st.markdown("---")
@@ -154,12 +153,11 @@ st.markdown("""
     At the opposite, a little less than 15% of people have returned the car with more than 4 hours of delay.
     """)
 
+
 # Conclusion
-st.markdown("---")
-st.subheader('Conclusions')
-st.markdown("""
-    work in progress
-""")
+#st.markdown("---")
+#st.subheader('Conclusion')
+#st.markdown("""""")
 
 # Footer
 empty_space, footer = st.columns([1, 2])
@@ -169,5 +167,5 @@ with empty_space:
 
 with footer:
     st.markdown("""
-        [my Github](www.github.com/xxxxxxxxxx)
+        [my Github](www.github.com/sdupland)
     """)
