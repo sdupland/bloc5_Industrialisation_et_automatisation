@@ -1,3 +1,5 @@
+Nota : Link to the bloc1 : (https://github.com/sdupland/bloc1_infrastructure_donnees.git)
+
 # bloc5 Industrialisation et automatisation
 
 Industrialisation d'un algorithme d'apprentissage automatique et automatisation des processus de décision
