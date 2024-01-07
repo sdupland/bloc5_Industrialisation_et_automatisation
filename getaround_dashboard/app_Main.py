@@ -29,10 +29,9 @@ st.markdown("""
     Within the time threshold, a car will not be displayed in the search results if the requested checkin or checkout times are very close (depending ont the delay decided).
 """)
 
-with st.expander('About this app'):
-  st.write('This app was made with streamlit.')
-  st.image('https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png', width=250)
-
+with st.expander("About this app"):
+  st.write("This app was made with streamlit.")
+  st.image("https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png", width=250)
 
 # Footer
 empty_space, footer = st.columns([1, 2])
