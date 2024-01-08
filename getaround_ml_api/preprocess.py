@@ -6,7 +6,14 @@ from sklearn.compose import ColumnTransformer
 import joblib
 
 def preparation_data(Features) :
-    
+    """_summary_
+    function modifies data sent through the request method in order to have the same categories used further
+    Args:
+        dictionary of features (characteristic of the car) send through the request
+    Returns:
+        dataframe
+    """
+    # transform dictionary in dataframe 
     df = pd.DataFrame(dict(Features), index=[0])
     
     # grouping of certain values ​​on qualitative variables which are not enough present
@@ -24,7 +31,14 @@ def preparation_data(Features) :
     return df
 
 def preprocessing_data(df) :
-    
+    """_summary_
+    function preprocesses the data in order to be ready for our model
+    Args:
+        dataframe with all the characteristics of our car
+    Returns:
+        a list of features preprocessed
+    """
+
     """
     # Automatically detect names of numeric/categorical columns
     numeric_features = []
@@ -56,7 +70,8 @@ def preprocessing_data(df) :
     X_val = preprocessor.transform(df.head())
     
     """
-    preprocessor = joblib.load("prepro.joblib")
+    path = "prepro.joblib"
+    preprocessor = joblib.load(path)
     X_val = preprocessor.transform(df.head())
     
     return X_val
