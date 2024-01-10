@@ -28,7 +28,7 @@ you will find in this projetct different folders :
 - getaround_dashboard with .... the dashboard ans all the files needed (included dataset used). Dashboard can be found at this link : (https://getaround-dashboard-sndd-facc72edffdd.herokuapp.com)
 - getaround_ml_local with the notebook used to get thet raw data, transform it, create, train models and choose one
 - getaround_ml_api with a script using fast_api in order to deliver the predicted rental price of a car. Online API here : https://getaround-api-sndd-b23920c55a69.herokuapp.com/
-- getaround_mlflow with a script using heroku and mlflow
+- getaround_mlflow with a script using heroku and mlflow. Online MLFlow can be found here : https://getaround-mlflow-f2520114f48c.herokuapp.com
 
 
 
