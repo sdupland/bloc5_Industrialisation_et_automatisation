@@ -6,5 +6,5 @@ seaborn
 mlflow
 plotly
 joblib
-xgboost
+xgboost==2.0.2
 psycopg2-binary # important pour utiliser les bases de données sql
