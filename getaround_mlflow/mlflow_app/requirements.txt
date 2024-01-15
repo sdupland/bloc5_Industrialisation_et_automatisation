@@ -1,0 +1,3 @@
+boto3
+mlflow
+psycopg2-binary # important pour utiliser les bases de données sql
