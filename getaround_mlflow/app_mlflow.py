@@ -52,11 +52,11 @@ X_train = preprocessor.fit_transform(X_train)
 X_test = preprocessor.transform(X_test)
 
 # Set your variables for your environment
-EXPERIMENT_NAME="my-first-mlflow-experiment"
+EXPERIMENT_NAME="getaround-xgboost"
 
 # instanciate your experiment
 client=mlflow.tracking.MlflowClient()
-mlflow.set_tracking_uri("https://getaround-mlflow-f2520114f48c.herokuapp.com")
+mlflow.set_tracking_uri("https://mlflow-apps-b1797a75bc7a.herokuapp.com")
 
 # Set experiment"s info 
 mlflow.set_experiment(EXPERIMENT_NAME)
