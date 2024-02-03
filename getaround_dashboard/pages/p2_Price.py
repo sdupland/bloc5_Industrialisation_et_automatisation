@@ -134,6 +134,9 @@ with empty_space:
     st.write("")
 
 with footer:
+    st.write("")
+    st.write("")
+    st.write("")
     st.markdown("""
-        [my Github](www.github.com/sdupland)
+        [my Github](https://github.com/sdupland)
     """)

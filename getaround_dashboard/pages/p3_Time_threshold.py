@@ -129,7 +129,7 @@ st.markdown("### Impact of a time threshold of your choice")
 threshold_time = st.slider(
     "Which time threshold do you want to choose, in minutes ?",
     min_value=0,
-    max_value=240,
+    max_value=360,
     value=(0),)
 st.write("Start time :  {} minutes or around {} hours".format(threshold_time, round(threshold_time/60,1)))
 st.markdown("")
@@ -138,6 +138,26 @@ mask_delay = dataset_threshold["state"] == "ended"
 mean_price_minutes = 0.084 # calculate during the eda of prices data.
 cost_time_thresold = dataset_threshold.loc[mask_delay&mask_rented_before, "time_delta_with_previous_rental_in_minutes"].apply(lambda x : (x-threshold_time)*mean_price_minutes if x<threshold_time else 0).sum()
 st.markdown("#### With a time treshold of {} minutes, the loss of turnover will be potentially of around {} euros".format(threshold_time, int(cost_time_thresold)))
+st.markdown("""
+    This calcul is based on the following approach.
+    
+    On the current situation, some customers are late in their checkin. In this case, if the time delta between two rentals is less important than the time delay, the next customer won't be able to rent the car on the scheduled time.
+    It is a direct loss of turnover for our company (we assume that customers which are waiting for their cars don't pay even if their rental period has begun, and also they don't shift their rental period). 
+    
+    if we choose to set up a time treshold, we could possibly lose a part of our turnover because next customers won't be able to rent a car too close form the previous one.
+    One the one hand, when there is a delay and an insufficient period of time betwen two rentals, there is already a loss of turnover as we saw above. So the financial impact is neutral.
+    On another side, in cases where there is no delay for example, we will loss a part of our turnover.
+    
+    Based on historical data, and according to the period of time we select, we can calculate the quantity of minutes that won't be rented because of the time threshold (we assume that customers won't just shift their rental period).
+    We don't see any direct financial gain to set up a time threshold.
+    
+    That's why our calculations of impact are always negative in our approach. We have already observed a loss of turnover.
+    So set up a time threshold won't help us to recover directly this turnover because the time threshold will lead to a loss of turnover too :
+    - on cases where there were no issue, we rented a car before and now it won't be the case.
+    - on cases where there were issues, we didn't rent a car because of the delay. We replace the loss of turnover du to delay from the one due to the time threshold.
+    
+    But this approach has some limitations we will see in conclusion.
+""")
 
 # Plot 6
 st.markdown("---")
@@ -145,7 +165,19 @@ st.subheader("Plot 6")
 st.markdown("### Conclusion")
 st.markdown("")
 st.markdown("""
-    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    Our approach which is perhaps suprising needs to be balanced by different points :
+    - we don't know the origin of cancellation and they can be linked to delay. this point should be taking account in our calculation
+    - we don't know also how customers can adapt to a time threshold. Perhaps they will just shift the period of location for example
+    - we aren't taking account the customer's satisfaction (or dissatisfaction !) for which we don't have information. We can't measure it in financial terms for example.
+    
+    In terms of recommendations, we will say that the previous calculation must be put into perspective with the customer's satisfaction and the limitations mentioned.
+    We should investigate on different ways to improve this work and for example :
+    - lead a satisfaction survey to measure the impact of delay on customer's beahaviour,
+    - clarify the origin of cancelation.
+    
+    Nevertheless, on this first basis, we can :
+    - evaluate a financial impact of a time threshold,
+    - measure its importance in view of the size of the company, its turnover, and its goal in terms of customer service.
 """)
 
 # Footer
@@ -156,5 +188,5 @@ with empty_space:
 
 with footer:
     st.markdown("""
-        [my Github](www.github.com/sdupland)
+        [my Github](https://github.com/sdupland)
     """)

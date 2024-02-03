@@ -27,10 +27,10 @@ dataset_delay = load_data()
 st.sidebar.header("Table of content")
 st.sidebar.markdown("""
     * [Preview of data set](#dataset-preview)
-    * [Graph 1](#plot-1) - How is ordered our cars
-    * [Graph 2](#plot-2) - When is returned our cars
-    * [Graph 3](#plot-3) - Which Rate of cancellation
-    * [Graph 4](#plot-4) - Are the cars rented before
+    * [Graph 1](#plot-1) - How are ordered our cars ?
+    * [Graph 2](#plot-2) - When are returned our cars ?
+    * [Graph 3](#plot-3) - Which Rate of cancellation ?
+    * [Graph 4](#plot-4) - Are the cars rented before ?
     * [Graph 5](#plot-5) - Check in status according to the situation of the car previously (rented or not)
     * [Graph 6](#plot-6) - Check in status according to the checkin type
     * [Graph 7](#plot-7) - Distribution of delay according to different slices
@@ -56,7 +56,7 @@ with col1:
     # Graph 1
     st.markdown("---")
     st.subheader("plot 1")
-    st.markdown("### how is ordered our cars")
+    st.markdown("### how are ordered our cars ?")
     fig1 = px.pie(dataset_delay,
                   names="checkin_type",
                   hole=.5)
@@ -73,7 +73,7 @@ with col2:
     # Graph 2
     st.markdown("---")
     st.subheader("plot 2")
-    st.markdown("### When is return our cars")
+    st.markdown("### When are return our cars ?")
     fig4 = px.pie(dataset_delay.loc[dataset_delay.state=="ended",:],
                   names="delay_status",
                   hole=.5)
@@ -108,7 +108,7 @@ with col2:
     # Graph 4
     st.markdown("---")
     st.subheader("plot 4")
-    st.markdown("### Are the cars rented before")
+    st.markdown("### Are the cars rented before ?")
     fig4 = px.pie(dataset_delay,
                   names="previous_ended_rental_id_category",
                   hole=.5)
@@ -171,5 +171,5 @@ with empty_space:
 
 with footer:
     st.markdown("""
-        [my Github](www.github.com/sdupland)
+        [my Github](https://github.com/sdupland)
     """)
