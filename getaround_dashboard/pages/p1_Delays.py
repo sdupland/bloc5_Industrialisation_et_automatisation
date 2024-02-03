@@ -17,6 +17,10 @@ st.title("Delay analysis")
 # function is run and data stores in memory for after
 @st.cache_data()
 def load_data():
+    """
+    Returns:
+        dataframe: dataset cleaned regarding the delay
+    """
     path = "data/dataset_delay_clean.csv"
     data = pd.read_csv(path)
     return data
@@ -44,7 +48,7 @@ if st.checkbox("Show processed data"):
     st.subheader("Overview of 10 random rows")
     st.write(dataset_delay.sample(10))
 st.markdown("""
-    The dataset was given by the company. We made some adapations in order to facilitate the present analysis,
+    The dataset was given by the company. We made some adaptations in order to facilitate the present analysis,
     but also the following building of a machine learning model in order to predict the rental price per day of a car.
 """)
 
@@ -170,6 +174,10 @@ with empty_space:
     st.write("")
 
 with footer:
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
     st.markdown("""
         [my Github](https://github.com/sdupland)
     """)

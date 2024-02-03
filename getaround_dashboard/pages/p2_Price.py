@@ -13,8 +13,13 @@ st.set_page_config(
 # App
 st.title("Price analysis")
 
+# allows to let in cache the data loaded and reuse it if necessary and there isn't any change
 @st.cache_data()
 def load_data():
+    """
+    Returns:
+        dataframe: dataset cleaned regarding the price
+    """
     path = "data/dataset_price_clean.csv"
     data = pd.read_csv(path)
     return data
@@ -25,7 +30,7 @@ dataset_price = load_data()
 st.sidebar.header("Table of content")
 st.sidebar.markdown("""
     * [Preview of data set](#dataset-preview)
-    * [Graph 1](##plot-1) - Mean rental price per day
+    * [Graph 1](#plot-1) - Mean rental price per day
     * [Graph 2](#plot-2) - Evolution of mean price according to the options
     * [Graph 3](#plot-3) - Type of models rented according to the kind of fuel
     * [Graph 4](#plot-4) - Overview of options available on cars   
@@ -48,7 +53,7 @@ with col1:
     # Graph 1
     st.markdown("---")
     st.subheader("plot 1")
-    st.markdown("### Mean rental price per day ")
+    st.markdown("### Mean rental price per day")
     fig1 = go.Figure(go.Indicator(mode = "gauge+number",
                                   value = dataset_price["rental_price_per_day"].mean(),
                                   domain = {"x": [0, 1], "y": [0, 1]},
@@ -60,6 +65,7 @@ with col1:
     """)
 
 with col2:
+    # Graph 2
     st.markdown("---")
     st.subheader("plot 2")
     st.markdown("### Evolution of mean price according to the options")
@@ -134,6 +140,7 @@ with empty_space:
     st.write("")
 
 with footer:
+    st.write("")
     st.write("")
     st.write("")
     st.write("")

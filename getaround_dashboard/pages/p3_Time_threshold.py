@@ -20,8 +20,13 @@ st.markdown("""
     We will try first to identify in the given dataset these situations.
 """)
 
+# allows to let in cache the data loaded and reuse it if necessary and there isn't any change
 @st.cache_data()
 def load_data():
+    """
+    Returns:
+        dataframe: dataset cleaned regarding the delay threshold
+    """
     path = "data/dataset_delay_threshold.csv"
     data = pd.read_csv(path)
     return data
@@ -187,6 +192,10 @@ with empty_space:
     st.write("")
 
 with footer:
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
     st.markdown("""
         [my Github](https://github.com/sdupland)
     """)
