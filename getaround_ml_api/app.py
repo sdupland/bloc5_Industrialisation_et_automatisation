@@ -1,12 +1,12 @@
-import uvicorn
-from fastapi import FastAPI
+#import libraries we need
+import uvicorn # provide an asynchrone interface between python web app and web servers, necessary with fastapi
+from fastapi import FastAPI # help building API in an easy way and good performance
 import pandas as pd
-from pydantic import BaseModel
-from typing import Literal, List, Union
-import joblib
-import json
+from pydantic import BaseModel # basemodel is a class used to define data models
+from typing import Literal, List, Union # typing provides a set of classes for working with types and type hints abd specify expected types of variables for example
+from joblib import load
 import xgboost as xgb
-from preprocess import preprocessing_data, preparation_data
+from preprocess import preprocessing_data, preparation_data # personnal functions found in preprocess.py script
 
 # description
 description = """
@@ -40,6 +40,7 @@ app = FastAPI(
     },
     openapi_tags=tags_metadata)
 
+# define for each feature the type of data (integer, boulean, float), the default value, and if necessary a list of possible values
 class Features(BaseModel):
     model_key: Literal["Citroën","Renault","BMW","Peugeot","Audi","Nissan","Mitsubishi","Mercedes","Volkswagen","Toyota","others","SEAT","Subaru","PGO","Opel","Ferrari"] = "Citroën"
     mileage: Union[int, float]
@@ -55,12 +56,21 @@ class Features(BaseModel):
     has_speed_regulator: bool=False
     winter_tires: bool=True
 
+# decorator in FastAPI that associates the function message() with the specified route between coma ("/") and the HTTP GET method
 @app.get("/")
+# The message() function is defined as an asynchronous function
+# This allows asynchronous operations to be performed within the function.
+# When someone accesses the root URL ("/") of the application using a web browser or any HTTP client, they will receive the text "Estimation of rental price with xgboost machine learning model" as the response.
 async def message() :
     texte = "Estimation of rental price with xgboost machine learning model"
     return texte
 
+
+# uses the @app.post decorator to associate the function predict() with the HTTP POST method at the "/predict" endpoint
 @app.post("/predict", tags=["ML-Model-Prediction"])
+# the predict function is defined as an asynchronous function
+# It takes a parameter Features
+# it expects a request body containing data with a structure defined by the Features model.
 async def predict(Features: Features):
     """
     Calculate the price per day for a specific rental car
@@ -89,7 +99,7 @@ async def predict(Features: Features):
     X_val = preprocessing_data(df1)
 
     # Load the model
-    regressor = joblib.load("finalmodel.joblib")
+    regressor = load("finalmodel.joblib")
 
     Y_pred = regressor.predict(X_val)
     print(Y_pred)
@@ -97,5 +107,6 @@ async def predict(Features: Features):
     
     return response
 
-if __name__ == "__main__":
+if __name__ == "__main__": # checks if the script is being executed as the main program
+    #  If the script is being run as the main program (i.e., not imported as a module), this line is executed. It uses the uvicorn.run() function to run a FastAPI application (app) using the Uvicorn ASGI server.
     uvicorn.run(app, host="0.0.0.0", port=4000)

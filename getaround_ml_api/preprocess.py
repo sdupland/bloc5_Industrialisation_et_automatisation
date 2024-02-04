@@ -1,17 +1,18 @@
+# import useful libraries
 import pandas as pd
-from sklearn.pipeline import Pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.compose import ColumnTransformer
-import joblib
+from sklearn.pipeline import Pipeline # use to assemble several transformers (preprocessing steps) and an optional final estimator (model) into a single unit
+from sklearn.impute import SimpleImputer # used for handling missing values in a dataset with a strategy (mean, median ...)
+from sklearn.preprocessing import OneHotEncoder, StandardScaler # OHE used for converting categorical features into a one-hot encoded representation, StandardScaler used for standardizing numeric features by removing the mean and scaling to unit variance. 
+from sklearn.compose import ColumnTransformer # used to apply different transformers to different columns in the dataset
+from joblib import load # used to load objects that have been saved using joblib's dump function.
 
 def preparation_data(Features) :
-    """_summary_
+    """
     function modifies data sent through the request method in order to have the same categories used further
     Args:
         dictionary of features (characteristic of the car) send through the request
     Returns:
-        dataframe
+        dataframe with new categories
     """
     # transform dictionary in dataframe 
     df = pd.DataFrame(dict(Features), index=[0])
@@ -31,10 +32,10 @@ def preparation_data(Features) :
     return df
 
 def preprocessing_data(df) :
-    """_summary_
+    """
     function preprocesses the data in order to be ready for our model
     Args:
-        dataframe with all the characteristics of our car
+        dataframe with all the characteristics of our car after being modified by preparation_data() function
     Returns:
         a list of features preprocessed
     """
@@ -70,8 +71,11 @@ def preprocessing_data(df) :
     X_val = preprocessor.transform(df.head())
     
     """
+    # path to saved method of preprocessing used before
     path = "prepro.joblib"
-    preprocessor = joblib.load(path)
+    # download the preprocessing 
+    preprocessor = load(path)
+    # apply preprocessing to the dataset given in input
     X_val = preprocessor.transform(df.head())
     
     return X_val
